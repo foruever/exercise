@@ -1,0 +1,12 @@
+PassengerId : 乘客的唯一ID
+Survived : 乘客最终是否存活(0 = No, 1 = Yes, 仅train.csv中包含此信息)
+Pclass : 乘客的船票的等级(1 = 1st, 2 = 2nd, 3 = 3rd)
+Name : 乘客名字
+Sex : 乘客性别(male, female)
+Age : 乘客年龄(Year)
+Sibsp ：船上兄弟姐妹/配偶的人数
+Parch : 船上父母/儿女的人数
+Ticket : 船票号码
+Fare : 船票价格
+Cabin : 船舱号
+Embarked : 出发港口(C = Cherbourg, Q = Queenstown, S = Southampton)
