@@ -19,25 +19,25 @@ def ana_lable(x):
 
 train_data_src=pd.read_csv('oppo_data/train.txt',header=None,delimiter='	')
 # train_data_src[4]=train_data_src[4].apply(lambda x:ana_lable(x))
-print(train_data_src.info())
+# print(train_data_src.info())
 train_data=train_data_src.loc[:,[0,2,3]]
 train_lable=train_data_src[4]
 # print(train_lable)
 
-# test_data_src=pd.read_csv('oppo_data/valid.txt',header=None,delimiter='	')
-# # test_data_src[4]=test_data_src[4].apply(lambda x:ana_lable(x))
-# test_data=train_data_src.loc[:,[0,2,3]]
-# test_lable=train_data_src[4]
+test_data_src=pd.read_csv('oppo_data/valid.txt',header=None,delimiter='	')
+# test_data_src[4]=test_data_src[4].apply(lambda x:ana_lable(x))
+test_data=train_data_src.loc[:,[0,2,3]]
+test_lable=train_data_src[4]
 # #
 #
-# dtrain=xgb.DMatrix(train_data,label=train_lable)
-# dtest=xgb.DMatrix(test_data,label=test_lable)
-# param = {'max_depth':2, 'eta':1, 'silent':1, 'objective':'binary:logistic' }
-# num_round = 1
-# bst = xgb.train(param, dtrain, num_round)
-# preds = bst.predict(dtest)
-# print(len((Series(preds)!=test_lable)))
-# print(len(test_lable))
+dtrain=xgb.DMatrix(train_data,label=train_lable)
+dtest=xgb.DMatrix(test_data,label=test_lable)
+param = {'max_depth':2, 'eta':1, 'silent':1, 'objective':'binary:logistic' }
+num_round = 1
+bst = xgb.train(param, dtrain, num_round)
+preds = bst.predict(dtest)
+print(len((Series(preds)!=test_lable)))
+print(len(test_lable))
 #
 # # 计算准确率
 # cnt1 = 0
