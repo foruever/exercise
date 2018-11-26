@@ -3,6 +3,7 @@ from sklearn import datasets
 import pandas as pd
 from pandas import *
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
 
 # 特征分布
 import matplotlib.pyplot as plt
@@ -28,11 +29,22 @@ print(train_data.info())
 
 '''
 # 2.1 Age处理
-
-
+# 随机森林处理
+age_data=train_data[['Age','Survived','Fare', 'Parch', 'SibSp', 'Pclass']]
+age_notnull_data=age_data[age_data.Age.notnull()]
+age_isnull_data=age_data[age_data.Age.isnull()]
+X = age_notnull_data.values[:,1:]
+Y = age_notnull_data.values[:,0]
+RFR = RandomForestRegressor(n_estimators=1000, n_jobs=-1)
+RFR.fit(X,Y)
+predictAges = RFR.predict(age_isnull_data.values[:,1:])
+train_data.loc[train_data['Age'].isnull(), ['Age']]= predictAges
+# 慢慢攒经验吧。。 好多不太懂 DF结构可以直接赋值，Series结构不可以
+# train_data.Age[train_data.Age.isnull()]=pd.Series(predictAges)
 # 2.2 Cabin处理
+# 全部处理为0 可能是没位子
 
-
+print(train_data.loc[train_data.Cabin.isnull(),['Age']])
 
 # 2.3 Embarked处理
 # 确实值较少，可以用众数处理
