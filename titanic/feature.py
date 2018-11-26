@@ -37,7 +37,4 @@ print(train_data.info())
 # 2.3 Embarked处理
 # 确实值较少，可以用众数处理
 # train_data['Embarked'][train_data.Embarked.isnull()]=train_data.Embarked.dropna().mode().values
-print(type(train_data.Embarked[train_data.Embarked.isnull()]))
-print(train_data.Embarked.dropna().mode().values)
-#=train_data.Embarked.dropna().mode().values
-print(train_data.Embarked.describe())
+train_data.Embarked.fillna(train_data['Embarked'].dropna().mode().max(),inplace=True)
