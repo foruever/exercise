@@ -43,10 +43,13 @@ train_data.loc[train_data['Age'].isnull(), ['Age']]= predictAges
 # train_data.Age[train_data.Age.isnull()]=pd.Series(predictAges)
 # 2.2 Cabin处理
 # 全部处理为0 可能是没位子
-
-print(train_data.loc[train_data.Cabin.isnull(),['Age']])
+train_data.fillna('0',inplace=True)
+print(train_data.groupby('Cabin')['Cabin'].count())
+# print(train_data.loc[train_data.Cabin.isnull(),['Age']])
 
 # 2.3 Embarked处理
 # 确实值较少，可以用众数处理
 # train_data['Embarked'][train_data.Embarked.isnull()]=train_data.Embarked.dropna().mode().values
 train_data.Embarked.fillna(train_data['Embarked'].dropna().mode().max(),inplace=True)
+
+print(train_data.describe())
