@@ -1,7 +1,7 @@
 import json
 
-f = open("data/druid_result.json", encoding='utf-8')
-w= open('result.csv', 'w')
+f = open("data/result.opentsdb.json", encoding='utf-8')
+w= open('result.opentsdb.csv', 'w')
 bodys = json.load(f)
 for body in bodys:
     try:
